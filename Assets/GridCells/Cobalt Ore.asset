@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a2ef00cea874739a8ef810626fd501, type: 3}
-  m_Name: Ore Cell
+  m_Name: Cobalt Ore
   m_EditorClassIdentifier: 
   cellType: 1
-  cellPrefab: {fileID: 919132149155446097, guid: 85f2c4d387b454f9898c14e8f80b0879, type: 3}
+  cellPrefab: {fileID: 1763267672434174631, guid: 5434be43dc7314e8fa6bcf5a3c1d12e4, type: 3}
   yRotation: 0

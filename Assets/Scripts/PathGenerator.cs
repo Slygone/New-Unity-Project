@@ -51,6 +51,17 @@ public class PathGenerator : MonoBehaviour
         return pathCells; 
     }
 
+
+    public bool GenerateCrossroads()
+    {
+        for (int i = 0; i < pathCells.Count; i++)
+        {
+            Vector2Int pathCell = pathCells[i];
+
+        }
+        return false;
+    }
+
     public bool CellIsEmpty(int x, int y)
     {
         return !pathCells.Contains(new Vector2Int(x, y));

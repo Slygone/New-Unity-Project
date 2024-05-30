@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a2ef00cea874739a8ef810626fd501, type: 3}
-  m_Name: Corner 3
+  m_Name: Amethyst Ore
   m_EditorClassIdentifier: 
-  cellType: 0
-  cellPrefab: {fileID: 6835037648733257761, guid: d1e498d7bb95f443b95f33bc58675e35, type: 3}
-  yRotation: -90
+  cellType: 1
+  cellPrefab: {fileID: 1763267672434174631, guid: a5593b41ee71b4d19a6233a3c358a34e, type: 3}
+  yRotation: 0

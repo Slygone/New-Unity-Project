@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Straight 6
   m_EditorClassIdentifier: 
   cellType: 0
-  cellPrefab: {fileID: 919132149155446097, guid: dd231eb1a5c8c48aea4659f3d0722d78, type: 3}
+  cellPrefab: {fileID: 6510870636826357267, guid: f7a72d5cee8a54382bd02bde5ed96044, type: 3}
   yRotation: 90

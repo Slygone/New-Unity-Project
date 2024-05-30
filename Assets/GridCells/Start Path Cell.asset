@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Start Path Cell
   m_EditorClassIdentifier: 
   cellType: 0
-  cellPrefab: {fileID: 919132149155446097, guid: bf495cc0dab184b2abc334c4a390b758, type: 3}
+  cellPrefab: {fileID: 1101134121742221220, guid: 230d0b5a8b49a4eb6bc20de2c518fcdf, type: 3}
   yRotation: 90

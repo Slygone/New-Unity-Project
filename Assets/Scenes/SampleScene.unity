@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridWidth: 18
-  gridHeight: 10
-  minPathLength: 35
+  gridHeight: 12
+  minPathLength: 38
   pathCellObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -176,6 +176,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dee3a03bf0a94dcd929f5b4b755264f, type: 2}
   - {fileID: 11400000, guid: 2c1733b9e598249d3b15345e2aec945c, type: 2}
   - {fileID: 11400000, guid: 2c87a75c0c9fb4c4d98e4ec4eeee477e, type: 2}
+  - {fileID: 11400000, guid: 943c1c95a06404530906a6965fc47ceb, type: 2}
   - {fileID: 11400000, guid: 5675952a6811b451db921f942d010671, type: 2}
   - {fileID: 11400000, guid: 6395c33bdb967471f96c2ad570ab3f88, type: 2}
   - {fileID: 11400000, guid: f932681648cbc437cb4763375db21511, type: 2}
