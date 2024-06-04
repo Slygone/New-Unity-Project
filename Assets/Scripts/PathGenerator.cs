@@ -5,6 +5,7 @@ public class PathGenerator : MonoBehaviour
 {
     private int width, height;
     private List<Vector2Int> pathCells;
+    private List<Vector2Int> route;
 
     public PathGenerator(int width, int height)
     {
@@ -50,6 +51,50 @@ public class PathGenerator : MonoBehaviour
 
         return pathCells; 
     }
+    public List<Vector2Int> GenerateRoute()
+    {
+        Vector2Int direction = Vector2Int.right;
+        route = new List<Vector2Int>();
+        Vector2Int currentCell = pathCells[0];
+
+        while (currentCell.x < width) 
+        {
+            route.Add(new Vector2Int(currentCell.x, currentCell.y));
+
+            if (CellIsTaken(currentCell + direction))
+            {
+                currentCell += direction;
+            }
+            else if (CellIsTaken(currentCell + Vector2Int.up) && direction != Vector2Int.down)
+            {
+                direction = Vector2Int.up;
+                currentCell += direction;
+            }
+            else if (CellIsTaken(currentCell + Vector2Int.down) && direction != Vector2Int.up)
+            {
+                direction = Vector2Int.down;
+                currentCell += direction;
+            }
+            else if (CellIsTaken(currentCell + Vector2Int.right) && direction != Vector2Int.left)
+            {
+                direction = Vector2Int.right;
+                currentCell += direction;
+            }
+            else if (CellIsTaken(currentCell + Vector2Int.left) && direction != Vector2Int.right)
+            {
+                direction = Vector2Int.left;
+                currentCell += direction;
+            }
+            else
+            {
+                //Nowhere to go. Returning the route
+                Debug.Log("Path SIze = " + route.Count);
+                return route;
+            }
+        }
+
+        return route;
+    }
 
 
     public bool GenerateCrossroads()
@@ -58,6 +103,27 @@ public class PathGenerator : MonoBehaviour
         {
             Vector2Int pathCell = pathCells[i];
 
+            if(pathCell.x > 3 && pathCell.x < width - 4 && pathCell.y > 2 && pathCell.y < height - 3)
+            {
+                if (CellIsEmpty(pathCell.x, pathCell.y + 3) && CellIsEmpty(pathCell.x + 1, pathCell.y + 3) && CellIsEmpty(pathCell.x + 2, pathCell.y + 3)
+                                && CellIsEmpty(pathCell.x - 1, pathCell.y + 2) && CellIsEmpty(pathCell.x, pathCell.y + 2) && CellIsEmpty(pathCell.x + 1, pathCell.y + 2) && CellIsEmpty(pathCell.x + 2, pathCell.y + 2) && CellIsEmpty(pathCell.x + 3, pathCell.y + 2)
+                                && CellIsEmpty(pathCell.x - 1, pathCell.y + 1) && CellIsEmpty(pathCell.x, pathCell.y + 1) && CellIsEmpty(pathCell.x + 1, pathCell.y + 1) && CellIsEmpty(pathCell.x + 2, pathCell.y + 1) && CellIsEmpty(pathCell.x + 3, pathCell.y + 1)
+                                && CellIsEmpty(pathCell.x + 1, pathCell.y) && CellIsEmpty(pathCell.x + 2, pathCell.y) && CellIsEmpty(pathCell.x + 3, pathCell.y)
+                                && CellIsEmpty(pathCell.x + 1, pathCell.y - 1) && CellIsEmpty(pathCell.x + 2, pathCell.y - 1))
+                {
+                    pathCells.InsertRange(i + 1, new List<Vector2Int> { new Vector2Int(pathCell.x + 1, pathCell.y), new Vector2Int(pathCell.x + 2, pathCell.y), new Vector2Int(pathCell.x + 2, pathCell.y + 1), new Vector2Int(pathCell.x + 2, pathCell.y + 2), new Vector2Int(pathCell.x + 1, pathCell.y + 2), new Vector2Int(pathCell.x, pathCell.y + 2), new Vector2Int(pathCell.x, pathCell.y + 1)});
+                    return true;
+                }
+                if(CellIsEmpty(pathCell.x + 1, pathCell.y + 1) && CellIsEmpty(pathCell.x + 2, pathCell.y + 1)
+                    && CellIsEmpty(pathCell.x + 1, pathCell.y) && CellIsEmpty(pathCell.x + 2, pathCell.y) && CellIsEmpty(pathCell.x + 3, pathCell.y)
+                    && CellIsEmpty(pathCell.x - 1, pathCell.y - 1) && CellIsEmpty(pathCell.x, pathCell.y - 1) && CellIsEmpty(pathCell.x + 1, pathCell.y - 1) && CellIsEmpty(pathCell.x + 2, pathCell.y - 1) && CellIsEmpty(pathCell.x + 3, pathCell.y - 1)
+                    && CellIsEmpty(pathCell.x - 1, pathCell.y - 2) && CellIsEmpty(pathCell.x, pathCell.y - 2) && CellIsEmpty(pathCell.x + 1, pathCell.y - 2) && CellIsEmpty(pathCell.x + 2, pathCell.y - 2) && CellIsEmpty(pathCell.x + 3, pathCell.y - 2)
+                    && CellIsEmpty(pathCell.x, pathCell.y - 3) && CellIsEmpty(pathCell.x + 1, pathCell.y - 3) && CellIsEmpty(pathCell.x + 2, pathCell.y - 3))
+                {
+                    pathCells.InsertRange(i + 1, new List<Vector2Int> { new Vector2Int(pathCell.x + 1, pathCell.y), new Vector2Int(pathCell.x + 2, pathCell.y), new Vector2Int(pathCell.x + 2, pathCell.y - 1), new Vector2Int(pathCell.x + 2, pathCell.y - 2) , new Vector2Int(pathCell.x + 1, pathCell.y - 2), new Vector2Int(pathCell.x, pathCell.y - 2), new Vector2Int(pathCell.x , pathCell.y - 1)});
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -67,6 +133,10 @@ public class PathGenerator : MonoBehaviour
         return !pathCells.Contains(new Vector2Int(x, y));
     }
 
+    public bool CellIsTaken(Vector2Int cell)
+    {
+        return pathCells.Contains(cell);
+    }
     public bool CellIsTaken(int x, int y)
     {
         return pathCells.Contains(new Vector2Int(x, y));

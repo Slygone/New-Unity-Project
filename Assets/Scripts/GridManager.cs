@@ -7,6 +7,7 @@ public class GridManager : MonoBehaviour
     public int gridWidth = 16;
     public int gridHeight = 8;
     public int minPathLength = 30;
+    private EnemyWaveManager waveManager;
 
     public GridCellObject[] pathCellObjects;
     public GridCellObject[] sceneryCellObjects;
@@ -16,7 +17,7 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         pathGenerator = new PathGenerator(gridWidth, gridHeight);
-
+        waveManager = GetComponent<EnemyWaveManager>();
 
         List<Vector2Int> pathCells = pathGenerator.GeneratePath();
         int pathSize = pathCells.Count;
@@ -24,10 +25,9 @@ public class GridManager : MonoBehaviour
         while (pathSize < minPathLength)
         {
             pathCells = pathGenerator.GeneratePath();
-            pathSize = pathCells.Count;
-                
+            while (pathGenerator.GenerateCrossroads());
+            pathSize = pathCells.Count;   
         }
-
         StartCoroutine(CreateGrid(pathCells));
         
     }
@@ -35,7 +35,8 @@ public class GridManager : MonoBehaviour
     IEnumerator CreateGrid(List<Vector2Int> pathCells)
     {
         yield return LayPathCells(pathCells);
-        yield return LaySceneryCells();
+        yield return LaySceneryCells();        
+        waveManager.SetPathCells(pathGenerator.GenerateRoute());
     }
 
     private IEnumerator LayPathCells(List<Vector2Int> pathCells)
