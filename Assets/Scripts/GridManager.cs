@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
             GameObject pathTileCell = Instantiate(pathTile, new Vector3(pathCell.x, 0f, pathCell.y), Quaternion.identity);
             pathTileCell.transform.Rotate(0f, pathCellObjects[neighborValue].yRotation, 0f, Space.Self);
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
 
         yield return null;
